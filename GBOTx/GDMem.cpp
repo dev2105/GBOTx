@@ -2,6 +2,7 @@
 using namespace std; 
 
 GDMem::GDMem(){
+    // BASE ADDRESS CHANGES EACHTIME NEW LEVEL IS LOADED, BE SURE TO REFIND ALL OFFSETS ONCE THAT HAPPENS!!!!
     // - GET PROCID
     procID = getProcID("Geometry Dash");
 
