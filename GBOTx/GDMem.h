@@ -12,20 +12,20 @@ public:
 	void hold();
 	void stopHold();
 	void jump();
-	bool isDead();
+	int isDead();
 	float getX();
 	float getY();
 	void setX(float x);
 	void setY(float y);
 
 	// Gamemodes
-	bool isWave();
+	int isWave();
 
 private:
 	DWORD procID;
 	HANDLE handle;
 	const WCHAR* name = L"GeometryDash.exe";
-	uintptr_t base;
-	struct memRef ref = {base};
+	uintptr_t base = 0;
+	memRef ref = memRef(base);
 };
 

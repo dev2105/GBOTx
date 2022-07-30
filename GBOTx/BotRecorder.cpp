@@ -21,7 +21,6 @@ void BotRecorder::waveBotRecorder() {
 		*/
 		bool hold  = false;
 
-
 		// initalize a vector for this wave 
 		// only do so if there isn't already a vector present
 		if (waveMacros.size() < (wavePortalIndex + 1)) {
@@ -34,9 +33,9 @@ void BotRecorder::waveBotRecorder() {
 			// save the starting coords of the current run (the coords of portal entry or the last alive coords if a death occurs)
 
 			waveStartingCoords = { GD->getX(),GD->getY() };
+			cout << waveStartingCoords.first << endl;
 			waveMacros[wavePortalIndex].push_back({ false,waveStartingCoords });
 		}
-		
 
 		if (!(GD->isDead())) {
 
@@ -44,13 +43,14 @@ void BotRecorder::waveBotRecorder() {
 			lastAlive = { GD->getX(),GD->getY() };
 			aliveSpots.push_back(lastAlive);
 
+
 		}
 
 		// death case
 		else {
 
 			// if the death occurs upon portal entry
-			if ((waveMacros[wavePortalIndex][0].second.first == GD->getX()) && (waveMacros[wavePortalIndex][0].second.second == GD->getY())) {
+			if ((abs(waveMacros[wavePortalIndex][0].second.first - GD->getX() < 1.0e-15)) && (abs(waveMacros[wavePortalIndex][0].second.second - GD->getY()) < 1.0e-15)) {
 
 				// if the wave portal is immedate death
 				waveMacros[wavePortalIndex][0].first = true;
@@ -61,7 +61,7 @@ void BotRecorder::waveBotRecorder() {
 			else {
 
 				// firstly check if the lastAlive spot on top of our vector is the starting point (if it is then pop it)
-				if ((waveStartingCoords.first == lastAlive.first) && (waveStartingCoords.second == lastAlive.second)) {
+				if ((abs(waveStartingCoords.first - lastAlive.first) < 1.0e-15) && (abs(waveStartingCoords.second == lastAlive.second) < 1.0e-15)) {
 					aliveSpots.pop_back();
 					lastAlive = aliveSpots[size(aliveSpots) - 1];
 
@@ -100,6 +100,8 @@ void BotRecorder::waveBotRecorder() {
 		}
 		
 	}
+
+	
 }
 
 void BotRecorder::reset() {

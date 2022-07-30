@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="BotRecorder.cpp" />
     <ClCompile Include="GDMem.cpp" />
+    <ClCompile Include="memRef.cpp" />
     <ClCompile Include="proc.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>

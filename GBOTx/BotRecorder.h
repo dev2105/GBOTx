@@ -41,6 +41,6 @@ private:
 
 	// wave
 	pair<double, double> waveStartingCoords = { 0,0 };
-	vector<vector<pair<bool,pair<float,float>>>> waveMacros = {{}};
+	vector<vector<pair<bool,pair<float,float>>>> waveMacros = {};
 };
 

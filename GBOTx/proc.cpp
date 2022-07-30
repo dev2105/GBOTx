@@ -54,7 +54,6 @@ uintptr_t GetModuleBaseAddress(DWORD procID, const WCHAR* modName) {
 		CloseHandle(modSnap);
 
 	}
-
 	return base;
 
 }

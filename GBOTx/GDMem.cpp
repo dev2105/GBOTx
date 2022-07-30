@@ -1,7 +1,7 @@
 #include "GDMem.h"
 using namespace std; 
 
-GDMem::GDMem() {
+GDMem::GDMem(){
     // - GET PROCID
     procID = getProcID("Geometry Dash");
 
@@ -10,16 +10,24 @@ GDMem::GDMem() {
     
     // - GET BASE ADDRESS
     base = GetModuleBaseAddress(procID, name);
-
+    uintptr_t baseBack = base;
+    cout << "Base address:" << base << endl;
     // dereference the pointer to the base address to get the actual address 
     vector<uint32_t> offsets = { 0x3222D0, 0x164, 0x224};
+    
+    do {
+        base = baseBack;
 
-    for (auto i : offsets) {
-        ReadProcessMemory(handle, (LPCVOID)(base + i), &base, sizeof(uint32_t), 0);
-    }
-
+        for (auto i : offsets) {
+            ReadProcessMemory(handle, (LPCVOID)(base + i), &base, sizeof(uint32_t), 0);
+            
+        }
+    } while (!(base));
+    cout << "Base address:" << base << endl;
     // add the final offset (no need to dereference further)
     base += 0x600;
+    ref = memRef(base);
+
 }
 
 void GDMem :: hold() {
@@ -37,14 +45,14 @@ void GDMem::jump() {
     stopHold();
 }
 
-bool GDMem::isDead() {
-    bool death = false; 
+int GDMem::isDead() {
+    int death = false; 
     ReadProcessMemory(handle, (LPCVOID)(ref.death), &death, sizeof(uint32_t), 0);
     return death;
 }
 
-bool GDMem::isWave() {
-    bool wave = false;
+int GDMem::isWave() {
+    int wave = 0;
     ReadProcessMemory(handle, (LPCVOID)(ref.wave), &wave, sizeof(uint32_t), 0);
     return wave;
 }
@@ -52,6 +60,7 @@ bool GDMem::isWave() {
 float GDMem::getX(){
     float x = 0;
     ReadProcessMemory(handle, (LPCVOID)(ref.x), &x, sizeof(uint32_t), 0);
+    //cout << x << endl;
     return x;
 }
 

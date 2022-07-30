@@ -30,6 +30,9 @@ int main() {
 			// record wave macros
 			recorder.waveBotRecorder();
 
+
+			// exit loop upon level complete/practice complete
+
 		}
 
 		if (wasRecording) {

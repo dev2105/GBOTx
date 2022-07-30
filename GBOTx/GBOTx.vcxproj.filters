@@ -53,5 +53,8 @@
     <ClCompile Include="BotRecorder.cpp">
       <Filter>Bot</Filter>
     </ClCompile>
+    <ClCompile Include="memRef.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

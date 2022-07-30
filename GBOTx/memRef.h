@@ -1,15 +1,20 @@
 #pragma once
 #include "Windows.h"
-struct memRef {
+class memRef {
+
+	
+
+public:
+	memRef(uintptr_t baseAddy);
 	// basic
 	uintptr_t base;
-	uintptr_t hold = base + 0x11;
-	uintptr_t death = base + 0x3F;
+	uintptr_t hold;
+	uintptr_t death;
 
 	// coordinates 
-	uintptr_t x = base + 0x7C;
-	uintptr_t y = base + 0x80;
+	uintptr_t x;
+	uintptr_t y;
 
 	// gamemodes
-	uintptr_t wave = base + 0x3B;
+	uintptr_t wave;
 };
