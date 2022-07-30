@@ -127,13 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="BotMain.h" />
+    <ClInclude Include="BotRecorder.h" />
     <ClInclude Include="GDMem.h" />
     <ClInclude Include="memRef.h" />
     <ClInclude Include="proc.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BotMain.cpp" />
+    <ClCompile Include="BotRecorder.cpp" />
     <ClCompile Include="GDMem.cpp" />
     <ClCompile Include="proc.cpp" />
     <ClCompile Include="Source.cpp" />

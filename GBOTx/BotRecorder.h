@@ -5,15 +5,16 @@
 #include <math.h>
 
 using namespace std;
-class BotMain
+class BotRecorder
 {
 public:
-	BotMain(GDMem* GDBOT){
+	BotRecorder(GDMem* GDBOT){
 		GD = GDBOT;
 	}
 
 	// Macro Recorders
 	void waveBotRecorder();
+	void reset();
 
 private:
 

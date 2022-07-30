@@ -1,6 +1,6 @@
-#include "BotMain.h"
+#include "BotRecorder.h"
 
-void BotMain::waveBotRecorder() {
+void BotRecorder::waveBotRecorder() {
 	// wave: true == hold, false == dont hold
 	/*Outter vector stores the vector for EACH portal 
 	* those vectors for each portal within the outer vector
@@ -100,4 +100,19 @@ void BotMain::waveBotRecorder() {
 		}
 		
 	}
+}
+
+void BotRecorder::reset() {
+
+	aliveSpots.clear();
+	lastAlive = { 0,0 };
+	wavePortalIndex = 0;
+	shipPortalIndex = 0;
+	UFOPortalIndex = 0;
+	ballPortalIndex = 0;
+	robotPortalIndex = 0;
+	spiderPortalIndex = 0;
+
+	waveStartingCoords = { 0,0 };
+	waveMacros.clear();
 }
