@@ -3,7 +3,6 @@
 #include <unordered_map>
 #include <utility>	
 #include <math.h>
-#include <Windows.h>
 
 using namespace std;
 class BotRecorder
@@ -14,7 +13,7 @@ public:
 	}
 
 	// Macro Recorders
-	void waveBotRecorder(bool isWave);
+	void waveBotRecorder();
 	void reset();
 
 private:
@@ -23,13 +22,13 @@ private:
 	// allows us to keep going back if the player is trapped. 
 
 	vector<pair<float, float>> aliveSpots = {};
-	pair<float, float> lastAlive = { 0.0F,0.0F };
-	size_t wavePortalIndex = 0;
-	size_t  shipPortalIndex = 0;
-	size_t  UFOPortalIndex = 0;
-	size_t  ballPortalIndex = 0;
-	size_t  robotPortalIndex = 0;
-	size_t spiderPortalIndex = 0;
+	pair<float, float> lastAlive = { 0,0 };
+	unsigned int wavePortalIndex = 0;
+	unsigned int shipPortalIndex = 0;
+	unsigned int UFOPortalIndex = 0;
+	unsigned int ballPortalIndex = 0;
+	unsigned int robotPortalIndex = 0;
+	unsigned int spiderPortalIndex = 0;
 	GDMem* GD;
 	// record the clicks 
 
@@ -39,15 +38,9 @@ private:
 	* store pairs where the first paramater is whether or not to click
 	* and the second parameter is the coordinates 
 	*/
-	
-	// forbidden coords 
-	vector<pair<float, float>> forbidden = {};
 
 	// wave
-	pair<float, float> currWPortalCoords = { 0.0F,0.0F };
-
+	pair<double, double> waveStartingCoords = { 0,0 };
 	vector<vector<pair<bool,pair<float,float>>>> waveMacros = {};
-	vector<pair<float, float>> waveDeathCoords = {};
-	bool wasWave = false;
 };
 

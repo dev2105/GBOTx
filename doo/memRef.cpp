@@ -9,5 +9,4 @@ memRef::memRef(uintptr_t baseAddy) {
 	x2 = base + 0x4C;
 	y2 = base + 0x50;
 	wave = base + 0x3B;
-
 }

@@ -45,9 +45,8 @@ private:
 
 	// wave
 	pair<float, float> currWPortalCoords = { 0.0F,0.0F };
-
+	pair<float, float> lastWaveRunCoords = { 0.0F,0.0F };
 	vector<vector<pair<bool,pair<float,float>>>> waveMacros = {};
-	vector<pair<float, float>> waveDeathCoords = {};
 	bool wasWave = false;
 };
 

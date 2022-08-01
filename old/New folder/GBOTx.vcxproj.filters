@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Memory">
+      <UniqueIdentifier>{c612bc4b-7d2d-4e73-9bd7-f03624ffa2d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory\proc">
+      <UniqueIdentifier>{99dcddf7-723f-46ea-b2a8-9d9b93c1d3d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bot">
+      <UniqueIdentifier>{2921b16c-448b-4bac-95e4-ec081a7e95ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bot\Wave">
+      <UniqueIdentifier>{e28ad986-5ce3-44aa-8c2a-d82e180ac136}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GDMem.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="memRef.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="proc.h">
+      <Filter>Memory\proc</Filter>
+    </ClInclude>
+    <ClInclude Include="BotRecorder.h">
+      <Filter>Bot</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GDMem.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="proc.cpp">
+      <Filter>Memory\proc</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BotRecorder.cpp">
+      <Filter>Bot</Filter>
+    </ClCompile>
+    <ClCompile Include="memRef.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

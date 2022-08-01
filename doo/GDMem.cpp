@@ -10,15 +10,12 @@ GDMem::GDMem() {
 
 }
 
-void GDMem::setBase(uintptr_t baseAddy) {
+void GDMem::initBase() {
+    base = GetModuleBaseAddress(procID, name);
+}
 
-    cout << "Base address:" << base << endl;
-    // add the final offset (no need to dereference further)
- 
-    base = baseAddy;
-    if (base){ 
-        base += 0x600; 
-        ref = memRef(base); }
+void GDMem::initPlayer() {
+
 }
 
 uintptr_t GDMem::getBase() {

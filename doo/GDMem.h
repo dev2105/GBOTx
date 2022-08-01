@@ -11,13 +11,9 @@ public:
 	~GDMem() {};
 
 	// base addy
-	void setBase(uintptr_t baseAddy);
 
-	uintptr_t getBase(); /* useful to check if level is loaded or not.
-						 if no level is loaded then the value will be 0,
-						 however if it is, then the value is greater than 0.
-						 if the value happens to be 0, then setBase needs to be 
-						 ran again.*/
+	void initBase(); 
+	void initPlayer();
 
 	// Basic
 	void hold();

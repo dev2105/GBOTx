@@ -15,7 +15,7 @@ void BotRecorder::waveBotRecorder(bool isWave) {
 
 	}
 	else if (isWave) {
-	/*	Sleep((1.0 / 60.0));*/
+		/*Sleep((1.0 / 60.0));*/
 		/* Check if the directory for all wave macros has 1
 		* less vector than the number of wave portals entered
 		*/
@@ -39,10 +39,7 @@ void BotRecorder::waveBotRecorder(bool isWave) {
 
 			
 		}
-		cout << "last alive: "<< lastAlive.first << wavePortalIndex << endl;
-		cout << "last X: " << GD->getX() << wavePortalIndex << endl;
-		cout << "forbidden: " << forbidden.size() << wavePortalIndex << endl;
-		cout << "alive spots: " << aliveSpots.size() << wavePortalIndex << endl;
+		cout << lastAlive.first << wavePortalIndex << endl;
 		// check if the current coordinates are already coords in last alive
 
 	/*	if ((aliveSpots.size() > 0) && ((fabs(GD->getX() - aliveSpots[aliveSpots.size() - 1].first) < 1.0e-15F) && (fabs(GD->getY() - aliveSpots[aliveSpots.size() - 1].second) < 1.0e-15F))) {
@@ -50,7 +47,7 @@ void BotRecorder::waveBotRecorder(bool isWave) {
 		}*/
 
 		for (auto j : aliveSpots) {
-			if (((fabs(GD->getX() - j.first) <= 1.0e-15F) && (fabs(GD->getY() -j.second) <= 1.0e-15F))) {
+			if (((fabs(GD->getX() - j.first) < 1.0e-15F) && (fabs(GD->getY() -j.second) < 1.0e-15F))) {
 				sameCoords = true;
 				break;
 			}
@@ -68,28 +65,23 @@ void BotRecorder::waveBotRecorder(bool isWave) {
 		}
 		else if (GD->isDead()) {
 			
-			
 			/* Check if the last alive point was attempted before. If it was,
 			push it into forbidden. */
+			if ((fabs(lastWaveRunCoords.first - lastAlive.first) <= 1.0e-15F) && (fabs(lastWaveRunCoords.second - lastAlive.second) <= 1.0e-15F)) {
+				forbidden.push_back(lastAlive);
 
-			for (auto x : waveDeathCoords) {
-				if ((fabs(GD->getX() - x.first) <= 1.0e-15F)) {
-					forbidden.push_back(lastAlive);
-
-					// remove the entry from wave macros and lastAlive
-					cout << "test1" << endl;
-					if (aliveSpots.size() > 0) {
-						aliveSpots.pop_back();
-						lastAlive = aliveSpots[aliveSpots.size() - 1];
-					}
-
-					if (waveMacros[waveMacros.size() - 1].size() > 1) {
-						waveMacros[waveMacros.size() - 1].pop_back();
-					}
-
+				// remove the entry from wave macros and lastAlive
+				cout << "test1" << endl;
+				if (aliveSpots.size() > 0) {
+					aliveSpots.pop_back();
+					lastAlive = aliveSpots[aliveSpots.size() - 1];
 				}
+				
+				if (waveMacros[waveMacros.size() - 1].size() > 1) {
+					waveMacros[waveMacros.size() - 1].pop_back();
+				}
+			
 			}
-			waveDeathCoords.push_back({ GD->getX(),GD->getY() });
 
 			if (waveMacros[waveMacros.size() - 1][waveMacros[waveMacros.size() - 1].size() - 1].first) {
 				waveMacros[waveMacros.size() - 1].push_back({ false,lastAlive });
@@ -97,6 +89,8 @@ void BotRecorder::waveBotRecorder(bool isWave) {
 			else {
 				waveMacros[waveMacros.size() - 1].push_back({ true,lastAlive });
 			}
+
+			lastWaveRunCoords = lastAlive;
 
 			while (GD->isDead()) {
 				/*cout << "lol" << endl;*/
@@ -106,20 +100,14 @@ void BotRecorder::waveBotRecorder(bool isWave) {
 					break;
 				}
 			}
-			while ((fabs(GD->getX() - lastAlive.first) > 1.0e-15F) && (fabs(GD->getY() - lastAlive.second) > 1.0e-15F)) {
 
+			while ((fabs(GD->getX() - lastAlive.first) >= 1.0e-15F) && (fabs(GD->getY() - lastAlive.second) >= 1.0e-15F)) {
 				GD->setX(lastAlive.first);
 				GD->setY(lastAlive.second);
-
 			}
 
-		}
 
-		while ((GD->getX()) < lastAlive.first) {
-			GD->setX(lastAlive.first);
-			GD->setY(lastAlive.second);
 		}
-
 		/*cout << waveMacros[waveMacros.size() - 1][waveMacros[waveMacros.size() - 1].size() - 1].first << endl;*/
 		if (waveMacros[waveMacros.size() - 1][waveMacros[waveMacros.size() - 1].size() - 1].first) {
 			GD->hold();
@@ -147,7 +135,7 @@ void BotRecorder::reset() {
 	ballPortalIndex = 0;
 	robotPortalIndex = 0;
 	spiderPortalIndex = 0;
-
+	lastWaveRunCoords = { 0,0 };
 	currWPortalCoords = { 0,0 };
 	waveMacros.clear();
 	forbidden.clear();
